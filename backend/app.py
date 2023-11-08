@@ -3,6 +3,7 @@ from flask import request as recieved_request
 import json
 import time
 # from requests import request
+from flask_cors import CORS
 
 import os
 import openai
@@ -16,6 +17,7 @@ openai.api_key = api_key
 NOT_RELEVANT = "NOT_RELEVANT"
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def hello_world():
