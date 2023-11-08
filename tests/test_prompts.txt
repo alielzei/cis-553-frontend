@@ -1,0 +1,5 @@
+
+1. genre: "Can you give me suggestions on drama movies?"
+2. random: "Can you give me suggestions some good movies to watch?"
+3. actors: "Can you give me suggestions on movies with Brad Pitt?"
+4. keywords: "Can you give me suggestions on movies about animals?"
