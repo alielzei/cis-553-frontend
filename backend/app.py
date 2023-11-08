@@ -7,8 +7,6 @@ import time
 import os
 import openai
 
-
-
 with open('backend/api.key', 'r') as file:
     api_key = file.readline().strip()  # Read the first line
 
