@@ -14,6 +14,10 @@ interface Movie {
   desc: string;
 }
 
+interface TheaterMovie {
+  
+}
+
 interface MovieSuggestionsResponse {
   time: number;
   movie_suggestions: Movie[];
@@ -81,7 +85,7 @@ function App() {
         {loading && <div className="flex justify-center items-center h-full">
           <div className="flex flex-col p-4 pb-8 justify-center items-center">
             <p className="p-4">
-            Fetching movie suggestions...
+              Fetching movie suggestions...
             </p>
             <CircularProgress />
           </div>
