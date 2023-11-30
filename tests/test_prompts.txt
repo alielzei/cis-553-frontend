@@ -3,3 +3,10 @@
 2. random: "Can you give me suggestions some good movies to watch?"
 3. actors: "Can you give me suggestions on movies with Brad Pitt?"
 4. keywords: "Can you give me suggestions on movies about animals?"
+
+
+{
+    "question": "Do you have any horror movie suggestions currently in theaters?",
+    "city": "Ann Arbor",
+    "state": "Michigan" 
+}
