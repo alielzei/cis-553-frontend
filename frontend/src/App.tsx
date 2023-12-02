@@ -1,27 +1,36 @@
 import React, { useState } from 'react';
+
+import axios from 'axios'; // You'll need Axios or another HTTP library for sending requests.
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import axios from 'axios'; // You'll need Axios or another HTTP library for sending requests.
 import { CircularProgress, Container, Grid } from '@mui/material';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import MovieCard from './MovieCard';
+
 
 axios.defaults.baseURL = "http://127.0.0.1:5000";
 
-interface Movie {
+interface Suggestion {
   name: string;
   year: string;
   actors: string;
   desc: string;
 }
 
+interface Showtime {}
+
 interface MovieSuggestionsResponse {
-  time: number;
-  movie_suggestions: Movie[];
+  suggestions: Suggestion[];
+  showtimes: Showtime[];
 }
 
 function App() {
   const [searchText, setSearchText] = useState("Can you give me suggestions on movies about animals?");
-  const [searchResults, setSearchResults] = useState<Movie[]>([]);
+  const [searchResults, setSearchResults] = useState<Suggestion[]>([]);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
@@ -35,13 +44,29 @@ function App() {
     // Make an HTTP request here using axios or your preferred HTTP library.
     // Replace the URL with your actual API endpoint.
     try {
-      const response = await axios.post<MovieSuggestionsResponse>('/prompt', { question: searchText }, {
+      const response = await axios.post<MovieSuggestionsResponse>('/', { question: searchText }, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      setSearchResults(response.data.movie_suggestions);
+      setSearchResults(response.data.suggestions);
     } catch (error) {
+      console.log("something")
+      toast.error(<>
+        <div>We are sorry!</div>
+        <div>Our application is down due technical issues, we are trying our best to fix it as early as possible.</div>
+        <div>Appreciate  your patience!</div>
+        </>, 
+      {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        // progress: ,
+        theme: "colored",
+        });
       console.error('Error:', error);
     } finally {
       setLoading(false);
@@ -57,7 +82,8 @@ function App() {
   return (
     <Container
       className="flex flex-col p-4 pt-10"
-    >
+    > 
+      <ToastContainer />
       <div
         className="flex flex-row gap-2"
       >

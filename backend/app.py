@@ -3,6 +3,7 @@ from flask import request as recieved_request
 import json
 import time
 # from requests import request
+from flask_cors import CORS
 
 import urllib.parse
 import os
@@ -23,7 +24,7 @@ serpapi_apikey = "0e7dbfbcc1a20145c678bca44458f6a785f8815510167755a047443d8b3f88
 NOT_RELEVANT = "NOT_RELEVANT"
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/', methods=['GET'])
 def home():
