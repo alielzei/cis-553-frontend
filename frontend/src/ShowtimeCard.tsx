@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 
-const ShowtimeCard = ({ imageUrl, title, showtime, theaterName }) => {
+const ShowtimeCard = ({ imageUrl, title, showtime, theaterName, distance }) => {
     return (
         <Card
 
@@ -22,6 +22,9 @@ const ShowtimeCard = ({ imageUrl, title, showtime, theaterName }) => {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     <strong>Theater Name:</strong> {theaterName}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    <strong>Distance:</strong> {distance}
                 </Typography>
             </CardContent>
         </Card>

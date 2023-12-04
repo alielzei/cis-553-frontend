@@ -13,8 +13,17 @@ import re
 
 from serpapi import GoogleSearch
 
-with open('backend/api.key', 'r') as file:
-    api_key = file.readline().strip()  # Read the first line
+
+api_key = None
+# Check if api key is in env
+if 'OPENAI_API_KEY' in os.environ:
+    api_key = os.environ['OPENAI_API_KEY']
+    print(f"found OPENAI API KEY: {api_key} in env")
+
+# If not, check if api key is in file
+if not api_key:
+    with open('backend/api.key', 'r') as file:
+        api_key = file.readline().strip()  # Read the first line
 
 openai.api_key = api_key
 
@@ -28,7 +37,7 @@ CORS(app)
 
 @app.route('/', methods=['GET'])
 def home():
-    return "Hello!"
+    return "Hello World!"
 
 
 @app.route('/', methods=['POST'])

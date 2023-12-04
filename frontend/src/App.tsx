@@ -142,6 +142,7 @@ function App() {
                 title={showtime.movie_name}
                 showtime={time.times.join(" ")}
                 theaterName={time.name}
+                distance={time.distance}
               />
             </Grid>
             ))
