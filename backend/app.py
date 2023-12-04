@@ -176,6 +176,7 @@ def get_list_currently_running_movies(location=("Ann Arbor", "Michigan")):
 
     search = GoogleSearch(params)
     results = search.get_dict()
+    print("RESULTS:", results)
     movies = results['knowledge_graph']['movies_playing']
     # short_showtimes = [{"name": m['name'], "details": m['extensions'] }  for m in raw_movies]
     return movies

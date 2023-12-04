@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 
-const MovieCard = ({ imageUrl, title, cast }) => {
+const ShowtimeCard = ({ imageUrl, title, showtime, theaterName }) => {
     return (
         <Card
 
@@ -18,11 +18,14 @@ const MovieCard = ({ imageUrl, title, cast }) => {
                     {title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    <strong>Cast:</strong> {cast}
+                    <strong>Showtime:</strong> {showtime}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    <strong>Theater Name:</strong> {theaterName}
                 </Typography>
             </CardContent>
         </Card>
     );
 };
 
-export default MovieCard;
+export default ShowtimeCard;

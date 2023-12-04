@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import MovieCard from './MovieCard';
+import ShowtimeCard from './ShowtimeCard';
 
 
 axios.defaults.baseURL = "http://127.0.0.1:5000";
@@ -21,7 +22,17 @@ interface Suggestion {
   desc: string;
 }
 
-interface Showtime {}
+interface Theater {
+  distance: string;
+  name: string;
+  times: Array<string>;
+}
+
+interface Showtime {
+  details: Array<string>;
+  movie_name: string;
+  showtimes: Theater[];
+}
 
 interface MovieSuggestionsResponse {
   suggestions: Suggestion[];
@@ -29,8 +40,8 @@ interface MovieSuggestionsResponse {
 }
 
 function App() {
-  const [searchText, setSearchText] = useState("Can you give me suggestions on movies about animals?");
-  const [searchResults, setSearchResults] = useState<Suggestion[]>([]);
+  const [searchText, setSearchText] = useState("Do you have any horror movie suggestions currently in theaters?");
+  const [searchResults, setSearchResults] = useState<MovieSuggestionsResponse>({ suggestions: [], showtimes: [] });
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
@@ -44,12 +55,16 @@ function App() {
     // Make an HTTP request here using axios or your preferred HTTP library.
     // Replace the URL with your actual API endpoint.
     try {
-      const response = await axios.post<MovieSuggestionsResponse>('/', { question: searchText }, {
+      const response = await axios.post<MovieSuggestionsResponse>('/', { 
+          question: searchText,
+          city: "Ann Arbor",
+          state: "Michigan",
+        }, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      setSearchResults(response.data.suggestions);
+      setSearchResults(response.data);
     } catch (error) {
       console.log("something")
       toast.error(<>
@@ -119,14 +134,25 @@ function App() {
           spacing={2}
 
         >
-          {searchResults.map((result, index) => (
-            <Grid item>
+          {searchResults.showtimes.map((showtime, i1) => (
+            showtime.showtimes.map((time, i2) => (
+              <Grid item key={`${i1-i2}`}>
+              <ShowtimeCard
+                imageUrl={`https://picsum.photos/seed/${i1-i2}abc/300/200`}
+                title={showtime.movie_name}
+                showtime={time.times.join(" ")}
+                theaterName={time.name}
+              />
+            </Grid>
+            ))
+          ))}
+
+          {searchResults.suggestions.map((result, index) => (
+            <Grid item key={index}>
               <MovieCard
                 imageUrl={`https://picsum.photos/seed/${index}abc/300/200`}
                 title={result.name}
                 cast={result.actors}
-                showtime="8:00 PM"
-                theaterName="Your Theater Name"
               />
 
             </Grid>
