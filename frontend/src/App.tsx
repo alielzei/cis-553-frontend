@@ -13,7 +13,7 @@ import MovieCard from './MovieCard';
 import ShowtimeCard from './ShowtimeCard';
 
 
-axios.defaults.baseURL = "http://127.0.0.1:5000";
+axios.defaults.baseURL = "https://cis-553-project-166e10ea0d1c.herokuapp.com";
 
 interface Suggestion {
   name: string;
@@ -138,7 +138,7 @@ function App() {
             showtime.showtimes.map((time, i2) => (
               <Grid item key={`${i1-i2}`}>
               <ShowtimeCard
-                imageUrl={`https://picsum.photos/seed/${i1-i2}abc/300/200`}
+                imageUrl={`https://picsum.photos/seed/${i1}-${i2}abc/300/200`}
                 title={showtime.movie_name}
                 showtime={time.times.join(" ")}
                 theaterName={time.name}
