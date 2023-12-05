@@ -4,13 +4,15 @@ import axios from 'axios'; // You'll need Axios or another HTTP library for send
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { CircularProgress, Container, Grid } from '@mui/material';
+import { CircularProgress, Container, Grid, Typography } from '@mui/material';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import MovieCard from './MovieCard';
 import ShowtimeCard from './ShowtimeCard';
+import { LocationPicker, RadiusPicker } from './LocationPicker';
+import { City, topCities } from './topCities';
 
 
 axios.defaults.baseURL = "https://cis-553-project-166e10ea0d1c.herokuapp.com";
@@ -42,6 +44,9 @@ interface MovieSuggestionsResponse {
 function App() {
   const [searchText, setSearchText] = useState("Do you have any horror movie suggestions currently in theaters?");
   const [searchResults, setSearchResults] = useState<MovieSuggestionsResponse>({ suggestions: [], showtimes: [] });
+  const [selectedLocation, setSelectedLocation] = useState<City>(topCities[0]); // topCities[0
+  const [selectedRadius, setSelectedRadius] = useState<string>("30 mi"); // topCities[0
+
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
@@ -57,8 +62,9 @@ function App() {
     try {
       const response = await axios.post<MovieSuggestionsResponse>('/', { 
           question: searchText,
-          city: "Ann Arbor",
-          state: "Michigan",
+          city: selectedLocation.city,
+          state: selectedLocation.state,
+          radius: selectedRadius,
         }, {
         headers: {
           "Content-Type": "application/json",
@@ -99,6 +105,15 @@ function App() {
       className="flex flex-col p-4 pt-10"
     > 
       <ToastContainer />
+
+      <div className="flex flex-row gap-2 mb-8">
+        <div className="grow">
+        <Typography variant="h3" >MovieMate - your buddy for anything movie!</Typography>
+        <Typography variant="h5" >Tell us what's on your mind today</Typography>
+        </div>
+          <LocationPicker value={selectedLocation} onPick={setSelectedLocation} />
+          <RadiusPicker value={selectedRadius} onPick={setSelectedRadius} />
+      </div>
       <div
         className="flex flex-row gap-2"
       >
@@ -163,6 +178,7 @@ function App() {
       </div>
     </Container>
   );
+
 }
 
 export default App;
