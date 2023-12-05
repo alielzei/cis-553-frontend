@@ -98,6 +98,7 @@ function App() {
     <Container
       className="flex flex-col p-4 pt-10"
     > 
+      <>Testing if github commits changes the online website</>
       <ToastContainer />
       <div
         className="flex flex-row gap-2"
