@@ -16,6 +16,7 @@ import RadiusPicker from './components/RadiusPicker';
 import { City, topCities } from './const/topCities';
 import { radiusOptions } from './const/radiusOptions';
 
+import mockdata from './mockdata.json';
 
 axios.defaults.baseURL = "https://cis-553-project-166e10ea0d1c.herokuapp.com";
 
@@ -35,6 +36,7 @@ interface Theater {
 interface Showtime {
   details: Array<string>;
   movie_name: string;
+  image: string;
   showtimes: Theater[];
 }
 
@@ -63,31 +65,32 @@ function App() {
     // Replace the URL with your actual API endpoint.
     try {
       console.log(selectedLocation?.city, selectedLocation?.state, selectedRadius)
-      const response = await axios.post<MovieSuggestionsResponse>('/', { 
-          question: searchText,
-          city: selectedLocation?.city || null,
-          state: selectedLocation?.state || null,
-          radius: selectedRadius?.value || null,
-        }, {
+      const response = await axios.post<MovieSuggestionsResponse>('/', {
+        question: searchText,
+        city: selectedLocation?.city || null,
+        state: selectedLocation?.state || null,
+        radius: selectedRadius?.value || null,
+      }, {
         headers: {
           "Content-Type": "application/json",
         },
       });
       setSearchResults(response.data);
+      // setSearchResults(mockdata);
     } catch (error) {
       toast.error(<>
         <div>We are sorry!</div>
         <div>Our application is down due technical issues, we are trying our best to fix it as early as possible.</div>
         <div>Appreciate  your patience!</div>
-        </>, 
-      {
-        position: "top-center",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "colored",
+      </>,
+        {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
         });
       console.error('Error:', error);
     } finally {
@@ -104,16 +107,16 @@ function App() {
   return (
     <Container
       className="flex flex-col p-4 pt-10"
-    > 
+    >
       <ToastContainer />
 
       <div className="flex flex-row gap-2 mb-8">
         <div className="grow">
-        <Typography variant="h3" >MovieMate - your buddy for anything movie!</Typography>
-        <Typography variant="h5" >Tell us what's on your mind today</Typography>
+          <Typography variant="h3" >MovieMate - your buddy for anything movie!</Typography>
+          <Typography variant="h5" >Tell us what's on your mind today</Typography>
         </div>
-          <LocationPicker value={selectedLocation} onPick={setSelectedLocation} />
-          <RadiusPicker value={selectedRadius} onPick={setSelectedRadius} />
+        <LocationPicker value={selectedLocation} onPick={setSelectedLocation} />
+        <RadiusPicker value={selectedRadius} onPick={setSelectedRadius} />
       </div>
       <div
         className="flex flex-row gap-2"
@@ -138,7 +141,7 @@ function App() {
         {loading && <div className="flex justify-center items-center h-full">
           <div className="flex flex-col p-4 pb-8 justify-center items-center">
             <p className="p-4">
-            Fetching movie suggestions...
+              Fetching movie suggestions...
             </p>
             <CircularProgress />
           </div>
@@ -154,11 +157,11 @@ function App() {
             showtime.showtimes.map((time, i2) => (
               <Grid item key={`${i1-i2}`}>
               <ShowtimeCard
-                imageUrl={`https://picsum.photos/seed/${i1}-${i2}abc/300/200`}
+                imageUrl={showtime.image}
                 title={showtime.movie_name}
-                showtime={time.times.join(" ")}
-                theaterName={time.name}
-                distance={time.distance}
+                showtime={time.times?.join(" ") || "N/A"}
+                theaterName={time.name || "N/A"}
+                distance={time.distance || "N/A"}
               />
             </Grid>
             ))

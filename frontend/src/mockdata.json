@@ -1,0 +1,25 @@
+{
+    "suggestions": [],
+    "showtimes": [
+        {
+            "movie_name": "Thanksgiving",
+            "details": [
+                "R",
+                "1h 50m",
+                "Horror/Mystery"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Cinemark Ann Arbor 20 and IMAX",
+                        "distance": "4.9 mi",
+                        "times": [
+                            "10:35pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/656fd68df26ac63ad92cf003/images/0c856e179f22af3f7b13f487b2ff7c8c080957b8571b037cff7d6b458a6c739e0b15dfbe387fb2a1.jpeg"
+        }
+    ]
+}
