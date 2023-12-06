@@ -153,19 +153,20 @@ function App() {
           spacing={2}
 
         >
-          {searchResults.showtimes.map((showtime, i1) => (
-            showtime.showtimes.map((time, i2) => (
-              <Grid item key={`${i1-i2}`}>
-              <ShowtimeCard
-                imageUrl={showtime.image}
-                title={showtime.movie_name}
-                showtime={time.times?.join(" ") || "N/A"}
-                theaterName={time.name || "N/A"}
-                distance={time.distance || "N/A"}
-              />
-            </Grid>
+          {searchResults.showtimes.map((showtime, i1) => {
+            showtime.showtimes = showtime.showtimes.flat(Infinity)
+            return showtime.showtimes.map((time, i2) => (
+              <Grid item key={`${i1 - i2}`}>
+                <ShowtimeCard
+                  imageUrl={showtime.image}
+                  title={showtime.movie_name}
+                  showtime={time.times?.join(" ") || "N/A"}
+                  theaterName={time.name || "N/A"}
+                  distance={time.distance || "N/A"}
+                />
+              </Grid>
             ))
-          ))}
+          })}
 
           {searchResults.suggestions.map((result, index) => (
             <Grid item key={index}>
