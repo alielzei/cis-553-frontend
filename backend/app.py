@@ -9,8 +9,6 @@ import urllib.parse
 import os
 import openai
 import re
-
-
 from serpapi import GoogleSearch
 
 
@@ -20,14 +18,18 @@ if 'OPENAI_API_KEY' in os.environ:
     api_key = os.environ['OPENAI_API_KEY']
     print(f"found OPENAI API KEY: {api_key} in env")
 
-# If not, check if api key is in file
-if not api_key:
-    with open('backend/api.key', 'r') as file:
-        api_key = file.readline().strip()  # Read the first line
+
+serpapi_apikey = None
+# Check if api key is in env
+if 'SERPAPI_API_KEY' in os.environ:
+    serpapi_apikey = os.environ['SERPAPI_API_KEY']
+    print(f"found SERPAPI API KEY: {serpapi_apikey} in env")
+
+
+if not serpapi_apikey or not api_key:
+    raise KeyError("missing API keys")
 
 openai.api_key = api_key
-
-serpapi_apikey = "0e7dbfbcc1a20145c678bca44458f6a785f8815510167755a047443d8b3f88e9"
 
 
 NOT_RELEVANT = "NOT_RELEVANT"
@@ -45,7 +47,7 @@ def prompt():
     recieved_data = recieved_request.json
     question = recieved_data['question']
     # This is needed for showtimes location
-    location = (recieved_data['city'], recieved_data['state'])
+    location = (recieved_data['city'], recieved_data['state'], int(recieved_data['radius']))
 
     resp = dict()
 
@@ -196,24 +198,23 @@ def get_showtimes_for_movies(movies, location):
     Find showtimes for selected movies
     If cant find showtimes, then returns empty object for that movie
     """
-
     return_struct = []
 
-    i = 0
-    for mov in movies:
-        if i > 5: break
-        return_struct.append({
-            'movie_name': mov['name'],
-            'details': mov['extensions'],
-            'showtimes': get_one_movie_showtime(mov, location)
-        })
+    for mov in movies:        
+        showtimes = get_one_movie_showtime_check_radius(mov, location)
+        if showtimes:
+            return_struct.append({
+                'movie_name': mov['name'],
+                'details': mov['extensions'],
+                'showtimes': showtimes,
+                'image': mov['image']
+            })
 
-        i += 1
 
     return return_struct
 
 
-def get_one_movie_showtime(movie, location):
+def get_one_movie_showtime_check_radius(movie, location):
     """
     Functin retrieve just one movie
     Fist char >> string.find('&q=') + 3
@@ -245,13 +246,16 @@ def get_one_movie_showtime(movie, location):
     try:
         raw_showtimes = results['showtimes'][0]['theaters']
         # grabbing standard showings only
-        showtimes = [{'name': mov['name'], 'distance': mov['distance'], 'times': mov['showing'][0]['time']} for mov in raw_showtimes]
+        showtimes = []
+        for mov in raw_showtimes:
+            if float(mov['distance'].split(" mi")[0]) <= location[2]:
+                showtimes.append([{'name': mov['name'], 'distance': mov['distance'], 'times': mov['showing'][0]['time']} ])
 
         # grab only 3 movie theaters for simplicity
         cut_showtimes = showtimes[:3]
 
-    except:
-        print (f"ERROR: Bad keywords {keywords} resulted in json without showtimes")
+    except Exception as err:
+        print (f"ERROR: Bad keywords {keywords} resulted in json without showtimes. Also " + str(err))
         cut_showtimes = []
 
     return cut_showtimes
