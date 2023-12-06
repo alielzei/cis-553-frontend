@@ -54,13 +54,15 @@ def prompt():
     resp['time'] = time.time()
 
     ans = "Error"
+    ans_showtimes = []
     # filter out non-showtimes question
     if check_if_showtimes_needed(question):
         # showtimes question
         ans_showtimes = answer_showtimes_question(question, location)
         ans_suggestion = []
-    else:
-        # not showtimes question
+
+    if len(ans_showtimes) == 0:
+        # suggestion question
         ans_showtimes = []
         ans_suggestion = answer_suggestion_question(question)
 
@@ -133,10 +135,13 @@ def answer_showtimes_question(question, location):
     # We need to get a list of movies currently running in theaters
     current_movies = get_list_currently_running_movies(location)
 
-    concise_movies = [{"name": m['name'], "details": m['extensions'], "id": _id }  for _id, m in enumerate(current_movies)]
+    concise_movies = []
+    for _id, m in enumerate(current_movies):
+        if 'extensions' in m:
+            concise_movies.append({"name": m['name'], "details": m['extensions'], "id": _id })
     
-    prompt = f"""Can you take a look at this list of movies and tell me which of the movies best addresses this question: '{question}' \n
-    Answer only with the ids of the movies and separated by newline characters. If none of the movies work, then asnwer with a blank \n""" + str(concise_movies)
+    prompt = f"""Can you take a look at the list of movies (all movies in the list are currently running in theaters) and tell me which of the movies best addresses this question: '{question}' \n
+    Answer only with the ids of the movies and separated by newline characters.\n""" + str(concise_movies)
 
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo", 
@@ -149,6 +154,10 @@ def answer_showtimes_question(question, location):
     #     raise AttributeError('LLM did not return good ids for the movies')
 
     matches = re.findall(pattern, movie_ids_raw)
+
+    if len(matches) == 0:
+        return []
+
     movie_ids = [int(num.strip()) for num in matches]
 
     # movie_ids = [int(num) for num in movie_ids_raw.split('\n')]
