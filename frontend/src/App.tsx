@@ -9,10 +9,12 @@ import { CircularProgress, Container, Grid, Typography } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import MovieCard from './MovieCard';
-import ShowtimeCard from './ShowtimeCard';
-import { LocationPicker, RadiusPicker } from './LocationPicker';
-import { City, topCities } from './topCities';
+import MovieCard from './components/MovieCard';
+import ShowtimeCard from './components/ShowtimeCard';
+import LocationPicker from './components/LocationPicker';
+import RadiusPicker from './components/RadiusPicker';
+import { City, topCities } from './const/topCities';
+import { radiusOptions } from './const/radiusOptions';
 
 
 axios.defaults.baseURL = "https://cis-553-project-166e10ea0d1c.herokuapp.com";
@@ -45,7 +47,7 @@ function App() {
   const [searchText, setSearchText] = useState("Do you have any horror movie suggestions currently in theaters?");
   const [searchResults, setSearchResults] = useState<MovieSuggestionsResponse>({ suggestions: [], showtimes: [] });
   const [selectedLocation, setSelectedLocation] = useState<City>(topCities[0]); // topCities[0
-  const [selectedRadius, setSelectedRadius] = useState<string>("30 mi"); // topCities[0
+  const [selectedRadius, setSelectedRadius] = useState(radiusOptions[0]); // topCities[0
 
   const [loading, setLoading] = useState(false);
 
@@ -60,11 +62,12 @@ function App() {
     // Make an HTTP request here using axios or your preferred HTTP library.
     // Replace the URL with your actual API endpoint.
     try {
+      console.log(selectedLocation?.city, selectedLocation?.state, selectedRadius)
       const response = await axios.post<MovieSuggestionsResponse>('/', { 
           question: searchText,
-          city: selectedLocation.city,
-          state: selectedLocation.state,
-          radius: selectedRadius,
+          city: selectedLocation?.city || null,
+          state: selectedLocation?.state || null,
+          radius: selectedRadius?.value || null,
         }, {
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +75,6 @@ function App() {
       });
       setSearchResults(response.data);
     } catch (error) {
-      console.log("something")
       toast.error(<>
         <div>We are sorry!</div>
         <div>Our application is down due technical issues, we are trying our best to fix it as early as possible.</div>
@@ -85,7 +87,6 @@ function App() {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        // progress: ,
         theme: "colored",
         });
       console.error('Error:', error);
