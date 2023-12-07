@@ -64,7 +64,7 @@ function App() {
     // Make an HTTP request here using axios or your preferred HTTP library.
     // Replace the URL with your actual API endpoint.
     try {
-      console.log(selectedLocation?.city, selectedLocation?.state, selectedRadius)
+      console.log(selectedLocation?.city, selectedLocation?.state, selectedRadius?.value)
       const response = await axios.post<MovieSuggestionsResponse>('/', {
         question: searchText,
         city: selectedLocation?.city || null,
@@ -156,7 +156,7 @@ function App() {
           {searchResults.showtimes.map((showtime, i1) => {
             showtime.showtimes = showtime.showtimes.flat(Infinity)
             return showtime.showtimes.map((time, i2) => (
-              <Grid item key={`${i1 - i2}`}>
+              <Grid item key={`${i1}-${i2}`}>
                 <ShowtimeCard
                   imageUrl={showtime.image}
                   title={showtime.movie_name}
@@ -171,7 +171,7 @@ function App() {
           {searchResults.suggestions.map((result, index) => (
             <Grid item key={index}>
               <MovieCard
-                imageUrl={`https://picsum.photos/seed/${index}abc/300/200`}
+                imageUrl={`https://picsum.photos/seed/${index}abc/200/300`}
                 title={result.name}
                 cast={result.actors}
               />
