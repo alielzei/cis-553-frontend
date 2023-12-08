@@ -1,0 +1,33 @@
+{
+  "question": "Do you have any horror movie suggestions currently in theaters?",
+  "city": "Ann Arbor",
+  "state": "Michigan",
+  "radius": "10"
+}
+
+{
+    "suggestions": [],
+    "showtimes": [
+        {
+            "movie_name": "Thanksgiving",
+            "details": [
+                "R",
+                "1h 50m",
+                "Horror/Mystery"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Cinemark Ann Arbor 20 and IMAX",
+                        "distance": "4.9 mi",
+                        "times": [
+                            "8:20pm",
+                            "11:05pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/65724c3879627ce2c4b26c89/images/0c856e179f22af3f7b13f487b2ff7c8c080957b8571b037c0c0dd95045449b2e9fad4ee1b1d3515a.jpeg"
+        }
+    ]
+}

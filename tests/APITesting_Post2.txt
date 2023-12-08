@@ -1,0 +1,335 @@
+{
+  "question": "Do you have any comedy movie suggestions currently in theaters?",
+  "city": "Detroit",
+  "state": "Michigan",
+  "radius": "50"
+}
+
+{
+    "suggestions": [],
+    "showtimes": [
+        {
+            "movie_name": "Trolls Band Together",
+            "details": [
+                "PG",
+                "1h 32m",
+                "Comedy/Fantasy"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Cineplex",
+                        "distance": "4.6 mi",
+                        "times": [
+                            "7:00pm",
+                            "9:30pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "Bel Air Luxury Cinema",
+                        "distance": "8.0 mi",
+                        "times": [
+                            "7:40pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "Imagine Cinemas Lakeshore",
+                        "distance": "9.7 mi",
+                        "times": [
+                            "7:10pm",
+                            "9:45pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/6572503e3517641e4631b079/images/a57ec016a043757b727c5e678efcbfb3511d66bc4e40f16a573d664df7e98f424031c0b1da6a6401.jpeg"
+        },
+        {
+            "movie_name": "The Hunger Games: The Ballad of Songbirds & Snakes",
+            "details": [
+                "PG-13 (USA)",
+                "2h 45m",
+                "Action/Adventure"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Cineplex",
+                        "distance": "4.6 mi",
+                        "times": [
+                            "10:15pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "Imagine Cinemas Lakeshore",
+                        "distance": "9.7 mi",
+                        "times": [
+                            "6:50pm",
+                            "9:20pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "MJR Universal Grand Cinema 16",
+                        "distance": "12.0 mi",
+                        "times": [
+                            "6:15pm",
+                            "8:00pm",
+                            "9:45pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/6572503e3517641e4631b079/images/a57ec016a043757b727c5e678efcbfb3511d66bc4e40f16aa4feb2358b8b004aa1367a44466687d3.jpeg"
+        },
+        {
+            "movie_name": "Godzilla Minus One",
+            "details": [
+                "PG-13 (USA)",
+                "2h 5m",
+                "Action/Sci-fi"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Bel Air Luxury Cinema",
+                        "distance": "8.0 mi",
+                        "times": [
+                            "6:10pm",
+                            "7:10pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "MJR Universal Grand Cinema 16",
+                        "distance": "12.0 mi",
+                        "times": [
+                            "6:15pm",
+                            "7:30pm",
+                            "9:15pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "MJR Southgate Cinema 20",
+                        "distance": "12.0 mi",
+                        "times": [
+                            "7:00pm",
+                            "10:00pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/6572503e3517641e4631b079/images/a57ec016a043757b727c5e678efcbfb3511d66bc4e40f16a367daf2003652b85ed38ae91b3975771.jpeg"
+        },
+        {
+            "movie_name": "The Boy and the Heron",
+            "details": [
+                "PG-13 (USA)",
+                "2h 5m",
+                "Fantasy/Adventure"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Cineplex",
+                        "distance": "4.6 mi",
+                        "times": [
+                            "6:50pm",
+                            "9:55pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "MJR Southgate Cinema 20",
+                        "distance": "12.0 mi",
+                        "times": [
+                            "8:00pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "Emagine Royal Oak",
+                        "distance": "12.1 mi",
+                        "times": [
+                            "8:00pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/6572503e3517641e4631b079/images/a57ec016a043757b727c5e678efcbfb3511d66bc4e40f16ab72ecfff8c3ed4647015838767055744.jpeg"
+        },
+        {
+            "movie_name": "Napoleon",
+            "details": [
+                "R",
+                "2h 38m",
+                "War/Action"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Cineplex",
+                        "distance": "4.6 mi",
+                        "times": [
+                            "6:05pm",
+                            "9:35pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "Imagine Cinemas Lakeshore",
+                        "distance": "9.7 mi",
+                        "times": [
+                            "7:00pm",
+                            "9:20pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "MJR Universal Grand Cinema 16",
+                        "distance": "12.0 mi",
+                        "times": [
+                            "6:40pm",
+                            "10:00pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/6572503e3517641e4631b079/images/a57ec016a043757b727c5e678efcbfb3511d66bc4e40f16a5ee75ecfed956a98c69b963c34c7363d.jpeg"
+        },
+        {
+            "movie_name": "The Shift",
+            "details": [
+                "PG-13 (USA)",
+                "1h 55m",
+                "Drama/Parallel Worlds"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Bel Air Luxury Cinema",
+                        "distance": "8.0 mi",
+                        "times": [
+                            "7:00pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "MJR Southgate Cinema 20",
+                        "distance": "12.0 mi",
+                        "times": [
+                            "6:15pm",
+                            "9:10pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "Emagine Royal Oak",
+                        "distance": "12.1 mi",
+                        "times": [
+                            "7:15pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/6572503e3517641e4631b079/images/a57ec016a043757b727c5e678efcbfb3511d66bc4e40f16a0239caad62a03fe1528d2a90f104f5db.jpeg"
+        },
+        {
+            "movie_name": "Silent Night",
+            "details": [
+                "R",
+                "1h 44m",
+                "Action/Thriller"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Cineplex",
+                        "distance": "4.6 mi",
+                        "times": [
+                            "7:10pm",
+                            "10:00pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "Imagine Cinemas Lakeshore",
+                        "distance": "9.7 mi",
+                        "times": [
+                            "7:25pm",
+                            "9:55pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "MJR Universal Grand Cinema 16",
+                        "distance": "12.0 mi",
+                        "times": [
+                            "6:45pm",
+                            "9:30pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/6572503e3517641e4631b079/images/a57ec016a043757b727c5e678efcbfb3511d66bc4e40f16a375c1eb340ea30ebc4fe4adfded841f4.jpeg"
+        },
+        {
+            "movie_name": "The Marvels",
+            "details": [
+                "PG-13 (USA)",
+                "1h 45m",
+                "Action/Adventure"
+            ],
+            "showtimes": [
+                [
+                    {
+                        "name": "Cineplex",
+                        "distance": "4.6 mi",
+                        "times": [
+                            "7:20pm",
+                            "9:50pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "Bel Air Luxury Cinema",
+                        "distance": "8.0 mi",
+                        "times": [
+                            "8:00pm"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "Imagine Cinemas Lakeshore",
+                        "distance": "9.7 mi",
+                        "times": [
+                            "6:55pm",
+                            "10:10pm"
+                        ]
+                    }
+                ]
+            ],
+            "image": "https://serpapi.com/searches/6572503e3517641e4631b079/images/a57ec016a043757b727c5e678efcbfb3511d66bc4e40f16a89e665ae37f48f824677640296f638e1.jpeg"
+        }
+    ]
+}

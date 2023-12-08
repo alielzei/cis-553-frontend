@@ -1,0 +1,24 @@
+{
+  "question": "Do you have any Angelina Jolie and Brad Pitt movies?",
+  "city": "Miami",
+  "state": "Florida",
+  "radius": "20"
+}
+
+{
+    "suggestions": [
+        {
+            "name": " Mr. & Mrs. Smith",
+            "year": "2005",
+            "actors": "Brad Pitt, Angelina Jolie",
+            "desc": "A married couple working as assassins for rival organizations unknowingly become targets themselves. "
+        },
+        {
+            "name": " By the Sea",
+            "year": "2015",
+            "actors": "Brad Pitt, Angelina Jolie",
+            "desc": "A troubled couple vacations in a French seaside town, trying to save their marriage. "
+        }
+    ],
+    "showtimes": []
+}
